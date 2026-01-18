@@ -6,13 +6,13 @@
 
 | フェーズ | 進捗 | 状態 |
 |---------|------|------|
-| Phase 1: 基盤構築 | 0/15 | 未着手 |
+| Phase 1: 基盤構築 | 12/15 | 進行中 |
 | Phase 2: データ層 | 0/12 | 未着手 |
 | Phase 3: ページ実装 | 0/24 | 未着手 |
 | Phase 4: 検索・フィルタ | 0/8 | 未着手 |
 | Phase 5: 多言語対応 | 0/7 | 未着手 |
 | Phase 6: 管理・運用 | 0/10 | 未着手 |
-| **合計** | **0/76** | **未着手** |
+| **合計** | **12/76** | **進行中** |
 
 ---
 
@@ -22,27 +22,27 @@
 
 ### 1.1 プロジェクトセットアップ
 
-- [ ] Next.js App Router プロジェクト初期化
-- [ ] TypeScript 設定確認・調整
-- [ ] ESLint / Prettier 設定
-- [ ] ディレクトリ構造作成（`src/app`, `src/lib`, `src/types`, `src/messages`）
+- [x] Next.js App Router プロジェクト初期化
+- [x] TypeScript 設定確認・調整
+- [x] ESLint / Prettier 設定
+- [x] ディレクトリ構造作成（`src/app`, `src/lib`, `src/types`, `src/messages`）
 
 ### 1.2 Firebase セットアップ
 
 - [ ] Firebase プロジェクト作成
 - [ ] Firestore データベース作成
-- [ ] Firebase SDK インストール（`firebase`, `firebase-admin`）
-- [ ] `src/lib/firebase/client.ts` 作成（クライアント初期化）
+- [x] Firebase SDK インストール（`firebase`, `firebase-admin`）
+- [x] `src/lib/firebase/client.ts` 作成（クライアント初期化）
 - [ ] 環境変数設定（`.env.local`）
 
 ### 1.3 デザインシステム基盤
 
-- [ ] グローバルCSS / CSS変数定義
-- [ ] フォント設定（資料館トーン：セリフ系 or 明朝系）
-- [ ] 基本レイアウトコンポーネント作成
-- [ ] 共通Header コンポーネント作成
-- [ ] 共通Footer コンポーネント作成
-- [ ] レスポンシブブレークポイント定義
+- [x] グローバルCSS / CSS変数定義
+- [x] フォント設定（資料館トーン：セリフ系 or 明朝系）
+- [x] 基本レイアウトコンポーネント作成
+- [x] 共通Header コンポーネント作成
+- [x] 共通Footer コンポーネント作成
+- [x] レスポンシブブレークポイント定義
 
 ---
 
@@ -227,4 +227,7 @@
 
 | 日付 | 内容 |
 |------|------|
+| 2026-01-19 | Phase 1.3 デザインシステム基盤完了（Header/Footer/Container/CSS変数） |
+| 2026-01-18 | Phase 1.2 Firebase SDK インストールと初期化ファイル作成完了 |
+| 2026-01-18 | Phase 1.1 プロジェクトセットアップ完了 |
 | YYYY-MM-DD | 初版作成 |

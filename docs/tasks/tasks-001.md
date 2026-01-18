@@ -7,12 +7,12 @@
 | フェーズ | 進捗 | 状態 |
 |---------|------|------|
 | Phase 1: 基盤構築 | 12/15 | 進行中 |
-| Phase 2: データ層 | 0/12 | 未着手 |
+| Phase 2: データ層 | 12/12 | 完了 |
 | Phase 3: ページ実装 | 0/24 | 未着手 |
 | Phase 4: 検索・フィルタ | 0/8 | 未着手 |
 | Phase 5: 多言語対応 | 0/7 | 未着手 |
 | Phase 6: 管理・運用 | 0/10 | 未着手 |
-| **合計** | **12/76** | **進行中** |
+| **合計** | **24/76** | **進行中** |
 
 ---
 
@@ -52,21 +52,21 @@
 
 ### 2.1 型定義
 
-- [ ] `src/types/firestore.ts` 作成
-- [ ] `ItemDoc` 型定義
-- [ ] `RevisionDoc` 型定義
-- [ ] `AnnotationDoc` 型定義
-- [ ] `CollectionDoc` 型定義
-- [ ] Enum型定義（`ItemType`, `SourceConfidence`, `Language`）
+- [x] `src/types/firestore.ts` 作成
+- [x] `ItemDoc` 型定義
+- [x] `RevisionDoc` 型定義
+- [x] `AnnotationDoc` 型定義
+- [x] `CollectionDoc` 型定義
+- [x] Enum型定義（`ItemType`, `SourceConfidence`, `Language`）
 
 ### 2.2 タクソノミー定義
 
-- [ ] Type（種別）辞書定義
-- [ ] Language（言語）辞書定義
-- [ ] SourceConfidence（出典確度）辞書定義
-- [ ] FirstSeen（初出年代）辞書定義
-- [ ] Motif（モチーフ）辞書定義
-- [ ] Region（地域）辞書定義（任意）
+- [x] Type（種別）辞書定義
+- [x] Language（言語）辞書定義
+- [x] SourceConfidence（出典確度）辞書定義
+- [x] FirstSeen（初出年代）辞書定義
+- [x] Motif（モチーフ）辞書定義
+- [x] Region（地域）辞書定義（任意）
 
 ---
 
@@ -227,6 +227,7 @@
 
 | 日付 | 内容 |
 |------|------|
+| 2026-01-19 | Phase 2 データ層完了（Firestore型定義・タクソノミー定義） |
 | 2026-01-19 | Phase 1.3 デザインシステム基盤完了（Header/Footer/Container/CSS変数） |
 | 2026-01-18 | Phase 1.2 Firebase SDK インストールと初期化ファイル作成完了 |
 | 2026-01-18 | Phase 1.1 プロジェクトセットアップ完了 |

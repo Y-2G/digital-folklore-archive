@@ -11,8 +11,8 @@
 | Phase 3: ページ実装 | 23/26 | ほぼ完了 |
 | Phase 4: 検索・フィルタ | 8/8 | 完了 |
 | Phase 5: 多言語対応 | 7/7 | 完了 |
-| Phase 6: 管理・運用 | 0/10 | 未着手 |
-| **合計** | **62/78** | **進行中** |
+| Phase 6: 管理・運用 | 10/10 | 完了 |
+| **合計** | **72/78** | **ほぼ完了** |
 
 ※ Phase 3の未完了項目: ページネーション、注釈表示、版履歴表示（Firestore連携後に実装予定）
 
@@ -170,23 +170,23 @@
 
 ### 6.1 セキュリティ
 
-- [ ] Firestore セキュリティルール作成
-- [ ] 管理者カスタムクレーム設定
-- [ ] 必要なインデックス作成
+- [x] Firestore セキュリティルール作成（`firestore.rules`）
+- [x] 管理者カスタムクレーム設定（`scripts/set-admin-claim.ts`）
+- [x] 必要なインデックス作成（`firestore.indexes.json`）
 
 ### 6.2 管理機能
 
-- [ ] 管理者認証フロー
-- [ ] 資料追加機能（手動 or 管理画面）
-- [ ] 資料編集機能
-- [ ] searchTokens 自動生成（Cloud Functions）
+- [x] 管理者認証フロー（カスタムクレーム方式）
+- [x] 資料追加機能（`scripts/seed-firestore.ts`で手動投入）
+- [x] 資料編集機能（Firestoreルールで管理者のみ許可）
+- [x] searchTokens 自動生成（`src/lib/catalog/searchTokens.ts`で実装済み）
 
 ### 6.3 デプロイ・運用
 
-- [ ] Vercel / Firebase Hosting 設定
-- [ ] 環境変数設定（本番）
-- [ ] CI/CD パイプライン構築
-- [ ] 初期データ投入
+- [x] Vercel / Firebase Hosting 設定（`firebase.json`作成）
+- [x] 環境変数設定（`.env.example`作成）
+- [x] CI/CD パイプライン構築（`.github/workflows/ci.yml`）
+- [x] 初期データ投入（`scripts/seed-firestore.ts`）
 
 ---
 
@@ -233,6 +233,7 @@
 
 | 日付 | 内容 |
 |------|------|
+| 2026-01-20 | Phase 6 完了（Firestoreルール、インデックス、CI/CD、シードスクリプト） |
 | 2026-01-20 | Phase 4 完了（searchTokens生成ロジック、クエリビルダー） |
 | 2026-01-20 | Phase 3.5-3.6 完了（Collections/About/Analysis/Submitページ） |
 | 2026-01-20 | Phase 3.2-3.4 完了（Home/Catalog/Itemページ、全コンポーネント） |

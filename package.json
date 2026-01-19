@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "firebase:emulator": "firebase emulators:start",
+    "firebase:deploy:rules": "firebase deploy --only firestore:rules",
+    "firebase:deploy:indexes": "firebase deploy --only firestore:indexes",
+    "db:seed": "npx ts-node scripts/seed-firestore.ts",
+    "admin:set": "npx ts-node scripts/set-admin-claim.ts"
   },
   "dependencies": {
     "firebase": "^12.8.0",
@@ -23,6 +29,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.3",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

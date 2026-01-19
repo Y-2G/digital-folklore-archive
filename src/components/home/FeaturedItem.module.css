@@ -1,0 +1,40 @@
+.card {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: var(--accent);
+}
+
+.link {
+  display: block;
+  padding: var(--spacing-md);
+  text-decoration: none;
+  color: var(--foreground);
+}
+
+.id {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--muted);
+  margin-bottom: var(--spacing-xs);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  font-weight: 400;
+  margin: 0 0 var(--spacing-sm) 0;
+  line-height: 1.4;
+}
+
+.reason {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}

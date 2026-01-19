@@ -1,0 +1,123 @@
+.main {
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-2xl);
+  min-height: 60vh;
+}
+
+.header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  font-weight: 500;
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.description {
+  font-size: var(--text-base);
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.curatorNote {
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background: var(--background);
+  border: 1px solid var(--border);
+}
+
+.curatorNote p {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.items {
+  margin-bottom: var(--spacing-xl);
+}
+
+.itemList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--border);
+}
+
+.itemRow {
+  border-bottom: 1px solid var(--border);
+}
+
+.itemRow:last-child {
+  border-bottom: none;
+}
+
+.itemLink {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.2s ease;
+}
+
+.itemLink:hover {
+  background: var(--border);
+}
+
+.itemId {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--muted);
+}
+
+.itemTitle {
+  font-size: var(--text-sm);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemType {
+  font-size: var(--text-xs);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.backLink {
+  margin-top: var(--spacing-lg);
+}
+
+.backLink a {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.backLink a:hover {
+  color: var(--foreground);
+}
+
+@media (max-width: 600px) {
+  .itemLink {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xs);
+  }
+
+  .itemType {
+    display: none;
+  }
+}

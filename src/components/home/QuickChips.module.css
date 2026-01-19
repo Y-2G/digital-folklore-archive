@@ -1,0 +1,33 @@
+.chips {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  justify-content: center;
+}
+
+.chip {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: var(--text-sm);
+  color: var(--muted);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.chip:hover {
+  color: var(--foreground);
+  border-color: var(--accent);
+}
+
+.secondary {
+  border-style: dashed;
+}

@@ -1,0 +1,44 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-md);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: 4px 10px;
+  font-size: var(--text-xs);
+  color: var(--foreground);
+  background: var(--border);
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.chip:hover {
+  opacity: 0.7;
+}
+
+.remove {
+  font-size: var(--text-sm);
+  line-height: 1;
+}
+
+.clearAll {
+  padding: 4px 10px;
+  font-size: var(--text-xs);
+  color: var(--muted);
+  background: none;
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.clearAll:hover {
+  color: var(--foreground);
+  border-color: var(--accent);
+}

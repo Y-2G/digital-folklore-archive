@@ -1,0 +1,47 @@
+.bodyViewer {
+  margin-bottom: var(--spacing-xl);
+}
+
+.tabs {
+  display: flex;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--spacing-sm);
+}
+
+.tab {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--text-sm);
+  color: var(--muted);
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tab:hover {
+  color: var(--foreground);
+}
+
+.tab.active {
+  color: var(--foreground);
+  border-color: var(--border);
+  border-bottom-color: var(--background);
+  margin-bottom: -1px;
+}
+
+.content {
+  font-size: var(--text-base);
+  line-height: 1.8;
+  max-width: 800px;
+}
+
+.content p {
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.content p:last-child {
+  margin-bottom: 0;
+}

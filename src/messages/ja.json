@@ -1,0 +1,131 @@
+{
+  "metadata": {
+    "title": "デジタル伝承資料庫",
+    "description": "ネット由来を含む同時代の伝承を収蔵するデジタルアーカイブ"
+  },
+  "nav": {
+    "home": "ホーム",
+    "catalog": "目録",
+    "collections": "コレクション",
+    "analysis": "分析",
+    "about": "について",
+    "submit": "投稿"
+  },
+  "common": {
+    "search": "検索",
+    "viewCatalog": "目録を見る",
+    "newItems": "新規収蔵",
+    "recentlyUpdated": "最近更新",
+    "featured": "注目資料",
+    "language": "言語"
+  },
+  "home": {
+    "tagline": "同時代の伝承を、資料として。",
+    "searchPlaceholder": "タイトル、キーワード、IDで検索..."
+  },
+  "catalog": {
+    "title": "目録",
+    "searchPlaceholder": "検索...",
+    "filters": "絞り込み",
+    "clearAll": "すべて解除",
+    "noResults": "該当する資料がありません",
+    "sort": {
+      "new": "新着順",
+      "updated": "更新順",
+      "firstSeen": "初出順",
+      "mostAnnotated": "注釈数順"
+    },
+    "facets": {
+      "type": "種別",
+      "confidence": "出典確度",
+      "language": "言語",
+      "firstSeen": "初出年代",
+      "motif": "モチーフ"
+    },
+    "columns": {
+      "id": "ID",
+      "title": "タイトル",
+      "type": "種別",
+      "firstSeen": "初出",
+      "source": "出典",
+      "updated": "更新日"
+    }
+  },
+  "item": {
+    "catalog": "目録",
+    "originalText": "原文",
+    "translation": "翻訳",
+    "source": "出典",
+    "revisionHistory": "版履歴",
+    "annotations": "注釈",
+    "metadata": "メタデータ",
+    "relatedItems": "関連資料"
+  },
+  "collections": {
+    "title": "コレクション",
+    "description": "キュレーションされた資料のコレクション",
+    "viewCollection": "コレクションを見る",
+    "items": "収蔵資料",
+    "curatorNote": "キュレーターノート",
+    "backToList": "コレクション一覧に戻る"
+  },
+  "about": {
+    "title": "このプロジェクトについて",
+    "mission": {
+      "title": "ミッション",
+      "content": "デジタル伝承資料庫は、インターネット上で生まれた同時代の伝承を、学術的な視点で収集・保存・目録化するプロジェクトです。怪談、都市伝説、クリーピーパスタ、チェーンメールなど、デジタル時代の民俗学的資料を後世に残すことを目指しています。"
+    },
+    "methodology": {
+      "title": "方法論",
+      "content": "各資料には出典情報、初出年代、信頼度評価が付与され、可能な限り原典へのリンクが提供されます。複数の版が存在する場合は版履歴として記録し、テキストの変遷を追跡可能にしています。"
+    },
+    "contribution": {
+      "title": "貢献",
+      "content": "資料の投稿、誤りの指摘、翻訳の提供など、コミュニティからの貢献を歓迎しています。投稿ページから新しい資料を提案できます。"
+    },
+    "contact": {
+      "title": "連絡先",
+      "content": "ご質問やご提案は、GitHubリポジトリのIssueを通じてお寄せください。"
+    }
+  },
+  "analysis": {
+    "title": "分析",
+    "description": "収蔵資料の統計情報と分布",
+    "totalItems": "収蔵資料数",
+    "byType": "種別分布",
+    "byLanguage": "言語分布",
+    "byRegion": "地域分布",
+    "byFirstSeen": "年代分布",
+    "byMedium": "メディア分布",
+    "comingSoon": "詳細な分析機能は近日公開予定です"
+  },
+  "submit": {
+    "title": "資料を投稿",
+    "description": "新しい資料の収蔵を提案する",
+    "guidelines": {
+      "title": "投稿ガイドライン",
+      "content": "投稿する資料は、できる限り原典へのリンクを含めてください。既に収蔵されている資料の重複投稿にご注意ください。"
+    },
+    "form": {
+      "title": "タイトル",
+      "titlePlaceholder": "資料のタイトル",
+      "type": "種別",
+      "selectType": "種別を選択",
+      "body": "本文",
+      "bodyPlaceholder": "資料の本文...",
+      "sourceName": "出典名",
+      "sourceNamePlaceholder": "2ch、Reddit、など",
+      "sourceUrl": "出典URL",
+      "sourceUrlPlaceholder": "https://...",
+      "notes": "備考",
+      "notesPlaceholder": "その他の情報があれば記入してください",
+      "submit": "投稿する"
+    },
+    "success": "投稿ありがとうございます。審査後に収蔵されます。",
+    "comingSoon": "投稿機能は近日公開予定です"
+  },
+  "footer": {
+    "copyright": "Digital Folklore Archive",
+    "description": "怪談・都市伝説・チェーンメール等の収蔵・目録化プロジェクト"
+  }
+}

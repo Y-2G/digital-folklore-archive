@@ -1,0 +1,131 @@
+{
+  "metadata": {
+    "title": "Digital Folklore Archive",
+    "description": "A digital archive cataloging contemporary folklore including internet-born traditions"
+  },
+  "nav": {
+    "home": "Home",
+    "catalog": "Catalog",
+    "collections": "Collections",
+    "analysis": "Analysis",
+    "about": "About",
+    "submit": "Submit"
+  },
+  "common": {
+    "search": "Search",
+    "viewCatalog": "View Catalog",
+    "newItems": "New Items",
+    "recentlyUpdated": "Recently Updated",
+    "featured": "Featured",
+    "language": "Language"
+  },
+  "home": {
+    "tagline": "Contemporary folklore, as archive.",
+    "searchPlaceholder": "Search by title, keyword, or ID..."
+  },
+  "catalog": {
+    "title": "Catalog",
+    "searchPlaceholder": "Search...",
+    "filters": "Filters",
+    "clearAll": "Clear All",
+    "noResults": "No items found",
+    "sort": {
+      "new": "Newest",
+      "updated": "Recently Updated",
+      "firstSeen": "First Seen",
+      "mostAnnotated": "Most Annotated"
+    },
+    "facets": {
+      "type": "Type",
+      "confidence": "Confidence",
+      "language": "Language",
+      "firstSeen": "First Seen",
+      "motif": "Motif"
+    },
+    "columns": {
+      "id": "ID",
+      "title": "Title",
+      "type": "Type",
+      "firstSeen": "First Seen",
+      "source": "Source",
+      "updated": "Updated"
+    }
+  },
+  "item": {
+    "catalog": "Catalog",
+    "originalText": "Original Text",
+    "translation": "Translation",
+    "source": "Source",
+    "revisionHistory": "Revision History",
+    "annotations": "Annotations",
+    "metadata": "Metadata",
+    "relatedItems": "Related Items"
+  },
+  "collections": {
+    "title": "Collections",
+    "description": "Curated collections of archive materials",
+    "viewCollection": "View Collection",
+    "items": "Items",
+    "curatorNote": "Curator's Note",
+    "backToList": "Back to Collections"
+  },
+  "about": {
+    "title": "About This Project",
+    "mission": {
+      "title": "Mission",
+      "content": "The Digital Folklore Archive is a project dedicated to collecting, preserving, and cataloging contemporary folklore born on the internet from an academic perspective. We aim to preserve digital-age folkloric materials—including kaidan, urban legends, creepypasta, and chain messages—for future generations."
+    },
+    "methodology": {
+      "title": "Methodology",
+      "content": "Each item is annotated with source information, approximate first appearance date, and reliability rating. Links to original sources are provided whenever possible. When multiple versions exist, revision history is recorded to enable tracking textual changes over time."
+    },
+    "contribution": {
+      "title": "Contribution",
+      "content": "We welcome community contributions including new material submissions, error corrections, and translation assistance. You can propose new items through the submission page."
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "For questions or suggestions, please reach out through our GitHub repository's Issues."
+    }
+  },
+  "analysis": {
+    "title": "Analysis",
+    "description": "Statistics and distribution of archived materials",
+    "totalItems": "Total Items",
+    "byType": "By Type",
+    "byLanguage": "By Language",
+    "byRegion": "By Region",
+    "byFirstSeen": "By First Seen",
+    "byMedium": "By Medium",
+    "comingSoon": "Detailed analysis features coming soon"
+  },
+  "submit": {
+    "title": "Submit Material",
+    "description": "Propose new material for the archive",
+    "guidelines": {
+      "title": "Submission Guidelines",
+      "content": "Please include a link to the original source whenever possible. Check if the material is already in the archive before submitting."
+    },
+    "form": {
+      "title": "Title",
+      "titlePlaceholder": "Title of the material",
+      "type": "Type",
+      "selectType": "Select type",
+      "body": "Body",
+      "bodyPlaceholder": "Main text of the material...",
+      "sourceName": "Source Name",
+      "sourceNamePlaceholder": "2ch, Reddit, etc.",
+      "sourceUrl": "Source URL",
+      "sourceUrlPlaceholder": "https://...",
+      "notes": "Notes",
+      "notesPlaceholder": "Any additional information",
+      "submit": "Submit"
+    },
+    "success": "Thank you for your submission. It will be reviewed before archiving.",
+    "comingSoon": "Submission feature coming soon"
+  },
+  "footer": {
+    "copyright": "Digital Folklore Archive",
+    "description": "A digital library for cataloging contemporary folklore"
+  }
+}

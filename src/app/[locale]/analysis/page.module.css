@@ -1,0 +1,126 @@
+.main {
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-2xl);
+  min-height: 60vh;
+}
+
+.header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  font-weight: 500;
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.description {
+  font-size: var(--text-base);
+  color: var(--muted);
+  margin: 0;
+}
+
+.stats {
+  margin-bottom: var(--spacing-xl);
+}
+
+.totalCard {
+  display: inline-flex;
+  flex-direction: column;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border: 1px solid var(--border);
+}
+
+.totalLabel {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.totalValue {
+  font-family: var(--font-mono);
+  font-size: var(--text-3xl);
+  font-weight: 600;
+}
+
+.distributions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+  .distributions {
+    grid-template-columns: 1fr;
+  }
+}
+
+.distributionSection {
+  padding: var(--spacing-lg);
+  border: 1px solid var(--border);
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  font-weight: 500;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.distributionList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.distributionItem {
+  display: grid;
+  grid-template-columns: 120px 1fr 40px;
+  gap: var(--spacing-sm);
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.distributionItem:last-child {
+  margin-bottom: 0;
+}
+
+.distributionLabel {
+  font-size: var(--text-sm);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.distributionBar {
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.distributionFill {
+  height: 100%;
+  background: var(--foreground);
+  border-radius: 4px;
+  min-width: 2px;
+}
+
+.distributionCount {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-align: right;
+  color: var(--muted);
+}
+
+.comingSoon {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+  padding: var(--spacing-xl);
+  border: 1px dashed var(--border);
+}

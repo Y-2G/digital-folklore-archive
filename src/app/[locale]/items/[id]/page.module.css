@@ -1,0 +1,31 @@
+.main {
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-2xl);
+  min-height: 60vh;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+}
+
+@media (min-width: 1025px) {
+  .layout {
+    grid-template-columns: 1fr var(--sidebar-width);
+  }
+}
+
+.content {
+  min-width: 0;
+}
+
+.sidebar {
+  order: -1;
+}
+
+@media (min-width: 1025px) {
+  .sidebar {
+    order: 1;
+  }
+}

@@ -1,7 +1,11 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
 import { Container } from './Container';
 import styles from './Footer.module.css';
 
 export function Footer() {
+  const t = useTranslations('footer');
   const currentYear = new Date().getFullYear();
 
   return (
@@ -9,10 +13,10 @@ export function Footer() {
       <Container>
         <div className={styles.content}>
           <p className={styles.copyright}>
-            &copy; {currentYear} Digital Folklore Archive
+            &copy; {currentYear} {t('copyright')}
           </p>
           <p className={styles.description}>
-            デジタル伝承資料庫 - 怪談・都市伝説・チェーンメール等の収蔵・目録化プロジェクト
+            {t('description')}
           </p>
         </div>
       </Container>

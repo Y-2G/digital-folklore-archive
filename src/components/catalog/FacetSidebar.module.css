@@ -1,0 +1,22 @@
+.sidebar {
+  padding-right: var(--spacing-lg);
+  border-right: 1px solid var(--border);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  font-weight: 400;
+  margin-bottom: var(--spacing-lg);
+  color: var(--foreground);
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+  }
+}

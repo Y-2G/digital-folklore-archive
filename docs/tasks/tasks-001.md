@@ -8,11 +8,13 @@
 |---------|------|------|
 | Phase 1: 基盤構築 | 12/15 | 進行中 |
 | Phase 2: データ層 | 12/12 | 完了 |
-| Phase 3: ページ実装 | 0/24 | 未着手 |
+| Phase 3: ページ実装 | 23/26 | ほぼ完了 |
 | Phase 4: 検索・フィルタ | 0/8 | 未着手 |
-| Phase 5: 多言語対応 | 0/7 | 未着手 |
+| Phase 5: 多言語対応 | 7/7 | 完了 |
 | Phase 6: 管理・運用 | 0/10 | 未着手 |
-| **合計** | **24/76** | **進行中** |
+| **合計** | **54/78** | **進行中** |
+
+※ Phase 3の未完了項目: ページネーション、注釈表示、版履歴表示（Firestore連携後に実装予定）
 
 ---
 
@@ -76,50 +78,50 @@
 
 ### 3.1 レイアウト
 
-- [ ] `src/app/[locale]/layout.tsx` 作成
-- [ ] ナビゲーション実装
-- [ ] 言語切替UI実装
+- [x] `src/app/[locale]/layout.tsx` 作成
+- [x] ナビゲーション実装
+- [x] 言語切替UI実装
 
 ### 3.2 Home ページ (`/`)
 
-- [ ] `src/app/[locale]/page.tsx` 作成
-- [ ] Hero セクション（タグライン + 検索バー）
-- [ ] クイックチップ（Type / Confidence / Language）
-- [ ] 新規収蔵リスト（5件）
-- [ ] 最近更新リスト（5件）
-- [ ] 注目資料セクション（3件）
+- [x] `src/app/[locale]/page.tsx` 作成
+- [x] Hero セクション（タグライン + 検索バー）
+- [x] クイックチップ（Type / Confidence / Language）
+- [x] 新規収蔵リスト（5件）
+- [x] 最近更新リスト（5件）
+- [x] 注目資料セクション（3件）
 
 ### 3.3 Catalog ページ (`/catalog`)
 
-- [ ] `src/app/[locale]/catalog/page.tsx` 作成
-- [ ] 上部ツールバー（検索バー + ソート + 条件チップ）
-- [ ] Facet サイドバー実装
-- [ ] 目録行リスト実装
-- [ ] ページネーション / 無限スクロール
-- [ ] URL クエリパラメータ連携
+- [x] `src/app/[locale]/catalog/page.tsx` 作成
+- [x] 上部ツールバー（検索バー + ソート + 条件チップ）
+- [x] Facet サイドバー実装
+- [x] 目録行リスト実装
+- [ ] ページネーション / 無限スクロール（モックデータのため未実装）
+- [x] URL クエリパラメータ連携
 
 ### 3.4 Item ページ (`/items/[id]`)
 
-- [ ] `src/app/[locale]/items/[id]/page.tsx` 作成
-- [ ] Breadcrumb 実装
-- [ ] Title block（タイトル / 原題 / バッジ）
-- [ ] 本文エリア（原文 / 翻訳切替）
-- [ ] 注釈・脚注表示
-- [ ] サイドバー（メタデータ / 関連資料）
-- [ ] 出典セクション
-- [ ] 版履歴セクション
+- [x] `src/app/[locale]/items/[id]/page.tsx` 作成
+- [x] Breadcrumb 実装
+- [x] Title block（タイトル / 原題 / バッジ）
+- [x] 本文エリア（原文 / 翻訳切替）
+- [ ] 注釈・脚注表示（データ未整備のため未実装）
+- [x] サイドバー（メタデータ / 関連資料）
+- [x] 出典セクション
+- [ ] 版履歴セクション（データ未整備のため未実装）
 
 ### 3.5 Collections ページ
 
-- [ ] `src/app/[locale]/collections/page.tsx` 作成（一覧）
-- [ ] `src/app/[locale]/collections/[slug]/page.tsx` 作成（詳細）
-- [ ] 棚カード / リスト表示
+- [x] `src/app/[locale]/collections/page.tsx` 作成（一覧）
+- [x] `src/app/[locale]/collections/[slug]/page.tsx` 作成（詳細）
+- [x] 棚カード / リスト表示
 
 ### 3.6 その他ページ
 
-- [ ] `src/app/[locale]/about/page.tsx` 作成
-- [ ] `src/app/[locale]/analysis/page.tsx` 作成（統計・分布）
-- [ ] `src/app/[locale]/submit/page.tsx` 作成（投稿フォーム）
+- [x] `src/app/[locale]/about/page.tsx` 作成
+- [x] `src/app/[locale]/analysis/page.tsx` 作成（統計・分布）
+- [x] `src/app/[locale]/submit/page.tsx` 作成（投稿フォーム）
 
 ---
 
@@ -149,16 +151,16 @@
 
 ### 5.1 next-intl セットアップ
 
-- [ ] `next-intl` インストール・設定
-- [ ] ミドルウェア設定（locale検出・リダイレクト）
-- [ ] `src/messages/ja.json` 作成
-- [ ] `src/messages/en.json` 作成
+- [x] `next-intl` インストール・設定
+- [x] ミドルウェア設定（locale検出・リダイレクト）
+- [x] `src/messages/ja.json` 作成
+- [x] `src/messages/en.json` 作成
 
 ### 5.2 翻訳実装
 
-- [ ] 共通UI翻訳（ナビ / ボタン / ラベル）
-- [ ] ページ固有翻訳（Home / Catalog / Item）
-- [ ] Type / Confidence ラベル翻訳
+- [x] 共通UI翻訳（ナビ / ボタン / ラベル）
+- [x] ページ固有翻訳（Home / Catalog / Item）
+- [x] Type / Confidence ラベル翻訳
 
 ---
 
@@ -194,32 +196,36 @@
 
 ### 共通
 
-- [ ] `SearchBar` - 検索入力
-- [ ] `Badge` - Type / Lang / Confidence バッジ
-- [ ] `Chip` - フィルタ条件チップ
-- [ ] `Breadcrumb` - パンくずリスト
+- [x] `SearchBar` - 検索入力
+- [x] `Badge` - Type / Lang / Confidence バッジ
+- [x] `Chip` - フィルタ条件チップ（ActiveFiltersとして実装）
+- [x] `Breadcrumb` - パンくずリスト
 
 ### Catalog
 
-- [ ] `FacetSidebar` - 絞り込みサイドバー
-- [ ] `FacetGroup` - Facet グループ（チェックボックス群）
-- [ ] `CatalogRow` - 目録1行
-- [ ] `SortSelect` - ソート選択
+- [x] `FacetSidebar` - 絞り込みサイドバー
+- [x] `FacetGroup` - Facet グループ（チェックボックス群）
+- [x] `CatalogRow` - 目録1行
+- [x] `SortSelect` - ソート選択
 
 ### Item
 
-- [ ] `TitleBlock` - タイトルブロック
-- [ ] `BodyViewer` - 本文表示（原文/翻訳切替）
-- [ ] `AnnotationList` - 注釈一覧
-- [ ] `RevisionHistory` - 版履歴
-- [ ] `SourceInfo` - 出典情報
+- [x] `TitleBlock` - タイトルブロック
+- [x] `BodyViewer` - 本文表示（原文/翻訳切替）
+- [ ] `AnnotationList` - 注釈一覧（データ未整備のため未実装）
+- [ ] `RevisionHistory` - 版履歴（データ未整備のため未実装）
+- [x] `SourceInfo` - 出典情報
 
 ### Home
 
-- [ ] `HeroSection` - ヒーローセクション
-- [ ] `QuickChips` - クイックフィルタ
-- [ ] `ItemListCompact` - コンパクトな資料リスト
-- [ ] `FeaturedItem` - 注目資料カード
+- [x] `HeroSection` - ヒーローセクション
+- [x] `QuickChips` - クイックフィルタ
+- [x] `ItemListCompact` - コンパクトな資料リスト
+- [x] `FeaturedItem` - 注目資料カード
+
+### Collection
+
+- [x] `CollectionCard` - コレクションカード
 
 ---
 
@@ -227,6 +233,10 @@
 
 | 日付 | 内容 |
 |------|------|
+| 2026-01-20 | Phase 3.5-3.6 完了（Collections/About/Analysis/Submitページ） |
+| 2026-01-20 | Phase 3.2-3.4 完了（Home/Catalog/Itemページ、全コンポーネント） |
+| 2026-01-20 | Phase 5 完了（next-intl設定、翻訳ファイル作成） |
+| 2026-01-20 | Phase 3.1 完了（レイアウト・ナビゲーション・言語切替） |
 | 2026-01-19 | Phase 2 データ層完了（Firestore型定義・タクソノミー定義） |
 | 2026-01-19 | Phase 1.3 デザインシステム基盤完了（Header/Footer/Container/CSS変数） |
 | 2026-01-18 | Phase 1.2 Firebase SDK インストールと初期化ファイル作成完了 |

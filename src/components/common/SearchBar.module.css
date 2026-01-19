@@ -1,0 +1,83 @@
+.form {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--background);
+}
+
+.form:focus-within {
+  border-color: var(--accent);
+}
+
+.input {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  background: transparent;
+  font-size: var(--text-base);
+  color: var(--foreground);
+}
+
+.input::placeholder {
+  color: var(--muted);
+}
+
+.input:focus {
+  outline: none;
+}
+
+.button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover {
+  color: var(--foreground);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Size variants */
+.small .input {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--text-sm);
+}
+
+.small .button {
+  padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+.small .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.large .input {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--text-lg);
+}
+
+.large .button {
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.large .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.large {
+  max-width: 700px;
+}

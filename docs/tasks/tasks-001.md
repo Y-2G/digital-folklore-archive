@@ -9,10 +9,10 @@
 | Phase 1: 基盤構築 | 12/15 | 進行中 |
 | Phase 2: データ層 | 12/12 | 完了 |
 | Phase 3: ページ実装 | 23/26 | ほぼ完了 |
-| Phase 4: 検索・フィルタ | 0/8 | 未着手 |
+| Phase 4: 検索・フィルタ | 8/8 | 完了 |
 | Phase 5: 多言語対応 | 7/7 | 完了 |
 | Phase 6: 管理・運用 | 0/10 | 未着手 |
-| **合計** | **54/78** | **進行中** |
+| **合計** | **62/78** | **進行中** |
 
 ※ Phase 3の未完了項目: ページネーション、注釈表示、版履歴表示（Firestore連携後に実装予定）
 
@@ -131,17 +131,17 @@
 
 ### 4.1 検索機能
 
-- [ ] `src/lib/catalog/searchTokens.ts` 作成
-- [ ] searchTokens 生成ロジック実装
-- [ ] 正規化処理（lowercase + NFKC + 記号除去）
-- [ ] prefix トークン化実装
+- [x] `src/lib/catalog/searchTokens.ts` 作成
+- [x] searchTokens 生成ロジック実装
+- [x] 正規化処理（lowercase + NFKC + 記号除去）
+- [x] prefix トークン化実装
 
 ### 4.2 クエリ実装
 
-- [ ] `src/lib/catalog/queries.ts` 作成
-- [ ] 基本クエリ（PUBLISHED + orderBy updatedAt）
-- [ ] Facet フィルタクエリ
-- [ ] 検索クエリ（array-contains）
+- [x] `src/lib/catalog/queries.ts` 作成
+- [x] 基本クエリ（PUBLISHED + orderBy updatedAt）
+- [x] Facet フィルタクエリ
+- [x] 検索クエリ（array-contains）
 
 ---
 
@@ -233,6 +233,7 @@
 
 | 日付 | 内容 |
 |------|------|
+| 2026-01-20 | Phase 4 完了（searchTokens生成ロジック、クエリビルダー） |
 | 2026-01-20 | Phase 3.5-3.6 完了（Collections/About/Analysis/Submitページ） |
 | 2026-01-20 | Phase 3.2-3.4 完了（Home/Catalog/Itemページ、全コンポーネント） |
 | 2026-01-20 | Phase 5 完了（next-intl設定、翻訳ファイル作成） |

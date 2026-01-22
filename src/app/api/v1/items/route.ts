@@ -11,13 +11,11 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { Timestamp } from 'firebase-admin/firestore';
 
 // API utilities
 import { validateApiKey } from '@/lib/api/auth';
 import { validateCreateItemRequest } from '@/lib/api/validation';
 import { checkRateLimit } from '@/lib/api/rateLimit';
-import { generateItemId } from '@/lib/api/idGenerator';
 import {
   createSuccessResponse,
   createAuthError,
@@ -27,14 +25,8 @@ import {
   withErrorHandling,
 } from '@/lib/api/errors';
 
-// Firebase
-import { getAdminFirestore } from '@/lib/firebase/admin';
-
-// Search token generation
-import { generateSearchTokens } from '@/lib/catalog/searchTokens';
-
-// Types
-import type { ItemDoc } from '@/types/firestore';
+// Core business logic
+import { createItem } from '@/lib/core';
 
 /**
  * Response type for successful item creation
@@ -125,78 +117,13 @@ export const POST = withErrorHandling(async (request: NextRequest) => {
 
   const validatedData = validation.data;
 
-  // 4. Generate unique item ID
-  const id = await generateItemId();
+  // 4. Create item using core service
+  const result = await createItem(validatedData);
 
-  // 5. Generate search tokens for full-text search
-  // Create a partial item for token generation
-  const itemForTokens = {
-    id,
-    title: validatedData.title,
-    originalTitle: validatedData.originalTitle,
-    sourceName: validatedData.sourceName,
-    motifs: validatedData.motifs,
-  } as ItemDoc;
-
-  const searchTokens = generateSearchTokens(itemForTokens);
-
-  // 6. Prepare document for Firestore
-  const now = Timestamp.now();
-
-  const itemDoc: Omit<ItemDoc, 'createdAt' | 'updatedAt'> & {
-    createdAt: Timestamp;
-    updatedAt: Timestamp;
-  } = {
-    id,
-    type: validatedData.type,
-    language: validatedData.language,
-    confidence: validatedData.confidence,
-    title: validatedData.title,
-    body: validatedData.body,
-    motifs: validatedData.motifs,
-    status: validatedData.status,
-    searchTokens,
-    annotationCount: 0,
-    revisionCount: 0,
-    createdAt: now,
-    updatedAt: now,
-  };
-
-  // Add optional fields if provided
-  if (validatedData.originalTitle) {
-    itemDoc.originalTitle = validatedData.originalTitle;
-  }
-  if (validatedData.firstSeen) {
-    itemDoc.firstSeen = validatedData.firstSeen;
-  }
-  if (validatedData.sourceName) {
-    itemDoc.sourceName = validatedData.sourceName;
-  }
-  if (validatedData.sourceUrl) {
-    itemDoc.sourceUrl = validatedData.sourceUrl;
-  }
-  if (validatedData.sourceArchiveUrl) {
-    itemDoc.sourceArchiveUrl = validatedData.sourceArchiveUrl;
-  }
-  if (validatedData.formats && validatedData.formats.length > 0) {
-    itemDoc.formats = validatedData.formats;
-  }
-  if (validatedData.region) {
-    itemDoc.region = validatedData.region;
-  }
-  if (validatedData.medium) {
-    itemDoc.medium = validatedData.medium;
-  }
-
-  // 7. Save to Firestore
-  const db = getAdminFirestore();
-
-  await db.collection('items').doc(id).set(itemDoc);
-
-  // 8. Return success response
+  // 5. Return success response
   const responseData: CreateItemResponse = {
-    id,
-    createdAt: now.toDate().toISOString(),
+    id: result.id,
+    createdAt: result.createdAt.toISOString(),
   };
 
   // Include rate limit headers in successful response

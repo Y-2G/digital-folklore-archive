@@ -53,7 +53,7 @@ function initializeAdminApp(): App {
   if (useEmulator) {
     const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'demo-dta';
 
-    console.log(`[Firebase Admin] Initializing for emulator (project: ${projectId})`);
+    console.error(`[Firebase Admin] Initializing for emulator (project: ${projectId})`);
 
     return initializeApp({
       projectId,
@@ -62,7 +62,7 @@ function initializeAdminApp(): App {
 
   // Production: Try Google Application Default Credentials first
   if (process.env.GOOGLE_APPLICATION_CREDENTIALS) {
-    console.log('[Firebase Admin] Using Google Application Default Credentials');
+    console.error('[Firebase Admin] Using Google Application Default Credentials');
 
     // The cert() function will automatically read from GOOGLE_APPLICATION_CREDENTIALS
     return initializeApp({
@@ -84,7 +84,7 @@ function initializeAdminApp(): App {
     );
   }
 
-  console.log(`[Firebase Admin] Initializing with explicit credentials (project: ${projectId})`);
+  console.error(`[Firebase Admin] Initializing with explicit credentials (project: ${projectId})`);
 
   // Private key from environment variables may have escaped newlines
   const formattedPrivateKey = privateKey.replace(/\\n/g, '\n');
@@ -129,7 +129,7 @@ export function getAdminFirestore(): Firestore {
       ssl: false,
     });
 
-    console.log(`[Firebase Admin] Connected to Firestore emulator at ${firestoreHost}`);
+    console.error(`[Firebase Admin] Connected to Firestore emulator at ${firestoreHost}`);
   }
 
   return adminDb;
@@ -159,7 +159,7 @@ export function getAdminAuth(): Auth {
 
     // Admin SDK connects to Auth emulator via environment variable
     // This is set automatically when using Firebase emulators
-    console.log(`[Firebase Admin] Auth emulator expected at ${authHost}`);
+    console.error(`[Firebase Admin] Auth emulator expected at ${authHost}`);
   }
 
   return adminAuthInstance;

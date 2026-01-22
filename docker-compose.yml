@@ -1,0 +1,36 @@
+# Docker Compose for Firebase Emulator Suite
+# Usage:
+#   docker compose up -d      # Start emulators
+#   docker compose down       # Stop emulators
+#   docker compose logs -f    # View logs
+
+services:
+  firebase:
+    build:
+      context: .
+      dockerfile: docker/firebase/Dockerfile
+    container_name: dta-firebase-emulator
+    ports:
+      - "4000:4000"   # Emulator UI
+      - "8080:8080"   # Firestore
+      - "9099:9099"   # Authentication
+      - "9199:9199"   # Storage
+    volumes:
+      # Sync config files (rules changes reflect immediately)
+      - ./firestore.rules:/app/firestore.rules:ro
+      - ./firestore.indexes.json:/app/firestore.indexes.json:ro
+      # Data persistence
+      - ./firebase-data:/app/data
+    environment:
+      - FIREBASE_PROJECT_ID=demo-dta
+      - GCLOUD_PROJECT=demo-dta
+      - FIRESTORE_EMULATOR_HOST=0.0.0.0:8080
+      - FIREBASE_AUTH_EMULATOR_HOST=0.0.0.0:9099
+      - FIREBASE_STORAGE_EMULATOR_HOST=0.0.0.0:9199
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4000"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped

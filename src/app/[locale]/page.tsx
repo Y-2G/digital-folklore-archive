@@ -1,9 +1,12 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Container } from '@/components/common';
 import { HeroSection, ItemListCompact, FeaturedItem } from '@/components/home';
-import { getNewestItems, getRecentItems, getFeaturedItems, featuredReasons } from '@/lib/mock/items';
+import { getRecentItems, getRecentlyUpdatedItems, getFeaturedItems } from '@/lib/firebase/firestore';
 import type { Locale } from '@/i18n/config';
 import styles from './page.module.css';
+
+// Dynamic rendering for Firestore data
+export const dynamic = 'force-dynamic';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -16,10 +19,10 @@ export default async function HomePage({ params }: Props) {
   const t = await getTranslations('common');
   const typedLocale = locale as Locale;
 
-  // Get mock data
-  const newestItems = getNewestItems(5);
-  const recentItems = getRecentItems(5);
-  const featuredItems = getFeaturedItems(3);
+  // Get data from Firestore
+  const newestItems = await getRecentItems(5);
+  const recentItems = await getRecentlyUpdatedItems(5);
+  const featuredItems = await getFeaturedItems(3);
 
   return (
     <Container as="main" className={styles.main}>
@@ -45,7 +48,7 @@ export default async function HomePage({ params }: Props) {
             <FeaturedItem
               key={item.id}
               item={item}
-              reason={featuredReasons[item.id]?.[typedLocale] || ''}
+              reason=""
               locale={typedLocale}
             />
           ))}

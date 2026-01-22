@@ -2,13 +2,13 @@
  * Catalog Query Builders
  *
  * Query builders for Firestore catalog operations.
- * Currently uses mock data, designed for easy migration to Firestore.
+ * Fetches data from Firebase Firestore (or emulator in development).
  *
  * Based on docs/design/06-search.md
  */
 
 import type { ItemDoc, ItemType, SourceConfidence, Language, FirstSeen, Motif } from '@/types/firestore';
-import { mockItems, getAllItems } from '@/lib/mock/items';
+import { getPublishedItems } from '@/lib/firebase/firestore';
 import { normalizeSearchQuery, matchesSearchQuery } from './searchTokens';
 
 // ============================================================================
@@ -44,16 +44,14 @@ export interface CatalogQueryResult {
 }
 
 // ============================================================================
-// Mock Data Query Implementation
+// Firestore Query Implementation
 // ============================================================================
 
 /**
  * Query catalog items with filters and sorting
- *
- * This implementation uses mock data. When Firestore is connected,
- * this function should be replaced with actual Firestore queries.
+ * Fetches from Firestore and applies client-side filtering for complex queries
  */
-export function queryCatalogItems(options: CatalogQueryOptions = {}): CatalogQueryResult {
+export async function queryCatalogItems(options: CatalogQueryOptions = {}): Promise<CatalogQueryResult> {
   const {
     filters = {},
     sort = { field: 'updatedAt', order: 'desc' },
@@ -61,9 +59,10 @@ export function queryCatalogItems(options: CatalogQueryOptions = {}): CatalogQue
     offset = 0,
   } = options;
 
-  let items = [...getAllItems()];
+  // Fetch all published items from Firestore
+  let items = await getPublishedItems();
 
-  // Apply filters
+  // Apply filters (client-side for flexibility)
   items = applyFilters(items, filters);
 
   // Get total before pagination
@@ -144,10 +143,10 @@ function applySorting(
 
     switch (field) {
       case 'updatedAt':
-        comparison = a.updatedAt.toDate().getTime() - b.updatedAt.toDate().getTime();
+        comparison = getTimestamp(a.updatedAt) - getTimestamp(b.updatedAt);
         break;
       case 'createdAt':
-        comparison = a.createdAt.toDate().getTime() - b.createdAt.toDate().getTime();
+        comparison = getTimestamp(a.createdAt) - getTimestamp(b.createdAt);
         break;
       case 'firstSeen':
         // Sort by era: Pre-1999 < 2000s < 2010s < 2020s < Unknown
@@ -173,6 +172,26 @@ function applySorting(
   return sorted;
 }
 
+/**
+ * Helper to get timestamp value from Firestore Timestamp or Date
+ */
+function getTimestamp(value: unknown): number {
+  if (!value) return 0;
+  // Firestore Timestamp
+  if (typeof value === 'object' && value !== null && 'toDate' in value) {
+    return (value as { toDate: () => Date }).toDate().getTime();
+  }
+  // Regular Date
+  if (value instanceof Date) {
+    return value.getTime();
+  }
+  // Firestore Timestamp from REST API (seconds + nanoseconds)
+  if (typeof value === 'object' && value !== null && 'seconds' in value) {
+    return (value as { seconds: number }).seconds * 1000;
+  }
+  return 0;
+}
+
 // ============================================================================
 // Facet Counting
 // ============================================================================
@@ -189,8 +208,8 @@ export interface FacetCounts {
  * Count items per facet value
  * Used to display counts next to filter options
  */
-export function getFacetCounts(items?: ItemDoc[]): FacetCounts {
-  const sourceItems = items ?? getAllItems();
+export async function getFacetCounts(items?: ItemDoc[]): Promise<FacetCounts> {
+  const sourceItems = items ?? await getPublishedItems();
 
   const counts: FacetCounts = {
     type: {} as Record<ItemType, number>,

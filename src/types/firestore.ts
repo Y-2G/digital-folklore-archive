@@ -298,6 +298,9 @@ export interface CollectionDoc {
   /** 説明（多言語） */
   description?: BilingualText;
 
+  /** キュレーターノート（多言語） */
+  curatorNote?: BilingualText;
+
   /**
    * 含まれる資料ID配列
    * @description Array of item document IDs in this collection

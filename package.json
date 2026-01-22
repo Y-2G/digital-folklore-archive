@@ -12,7 +12,12 @@
     "firebase:deploy:rules": "firebase deploy --only firestore:rules",
     "firebase:deploy:indexes": "firebase deploy --only firestore:indexes",
     "db:seed": "npx ts-node scripts/seed-firestore.ts",
-    "admin:set": "npx ts-node scripts/set-admin-claim.ts"
+    "admin:set": "npx ts-node scripts/set-admin-claim.ts",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f firebase",
+    "docker:reset": "docker compose down && rm -rf firebase-data && docker compose up -d",
+    "docker:build": "docker compose build --no-cache"
   },
   "dependencies": {
     "firebase": "^12.8.0",

@@ -12,7 +12,8 @@
 | Phase 4: 検索・フィルタ | 8/8 | 完了 |
 | Phase 5: 多言語対応 | 7/7 | 完了 |
 | Phase 6: 管理・運用 | 10/10 | 完了 |
-| **合計** | **72/78** | **ほぼ完了** |
+| Phase 7: Docker Firebase 環境 | 10/12 | ほぼ完了 |
+| **合計** | **82/90** | **進行中** |
 
 ※ Phase 3の未完了項目: ページネーション、注釈表示、版履歴表示（Firestore連携後に実装予定）
 
@@ -190,6 +191,39 @@
 
 ---
 
+## Phase 7: Docker Firebase 環境
+
+> 参照: [11-docker-firebase.md](../design/11-docker-firebase.md)
+
+### 7.1 Docker 基盤
+
+- [x] `docker/firebase/Dockerfile` 作成
+- [x] `docker-compose.yml` 作成
+- [x] `.firebaserc` 作成（プロジェクト設定）
+- [x] `.dockerignore` 作成
+
+### 7.2 Firebase 設定更新
+
+- [x] `firebase.json` 更新（host を 0.0.0.0 に変更、Auth/Storage 追加）
+- [x] エミュレータデータ永続化設定（import/export）
+
+### 7.3 アプリケーション連携
+
+- [x] `src/lib/firebase/client.ts` 更新（エミュレータ自動接続）
+- [x] `.env.local.example` 更新（エミュレータ用変数追加）
+- [x] `.gitignore` 更新（`firebase-data/` 追加）
+
+### 7.4 開発スクリプト
+
+- [x] `package.json` にDockerスクリプト追加（`docker:up`, `docker:down`, `docker:logs`, `docker:reset`）
+
+### 7.5 ドキュメント・CI
+
+- [x] `README.md` 更新（Docker 使用方法追加）
+- [ ] GitHub Actions 更新（Docker エミュレータ対応）
+
+---
+
 ## 補足: コンポーネント一覧
 
 実装が必要な主要コンポーネント:
@@ -233,6 +267,7 @@
 
 | 日付 | 内容 |
 |------|------|
+| 2026-01-21 | Phase 7 追加（Docker Firebase 環境） |
 | 2026-01-20 | Phase 6 完了（Firestoreルール、インデックス、CI/CD、シードスクリプト） |
 | 2026-01-20 | Phase 4 完了（searchTokens生成ロジック、クエリビルダー） |
 | 2026-01-20 | Phase 3.5-3.6 完了（Collections/About/Analysis/Submitページ） |

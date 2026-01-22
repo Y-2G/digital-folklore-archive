@@ -3,10 +3,12 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Container } from '@/components/common';
 import { Breadcrumb } from '@/components/common/Breadcrumb';
-import { getCollectionBySlug, getAllCollections } from '@/lib/mock/collections';
-import { getItemById } from '@/lib/mock/items';
+import { getCollectionBySlug, getItemsInCollection } from '@/lib/firebase/firestore';
 import type { Locale } from '@/i18n/config';
 import styles from './page.module.css';
+
+// Dynamic rendering for Firestore data
+export const dynamic = 'force-dynamic';
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -16,7 +18,7 @@ export default async function CollectionDetailPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const collection = getCollectionBySlug(slug);
+  const collection = await getCollectionBySlug(slug);
   if (!collection) {
     notFound();
   }
@@ -25,12 +27,10 @@ export default async function CollectionDetailPage({ params }: Props) {
   const typedLocale = locale as Locale;
 
   const title = collection.title[typedLocale] || collection.title.ja || collection.title.en;
-  const description = collection.description[typedLocale] || collection.description.ja || collection.description.en;
+  const description = collection.description?.[typedLocale] || collection.description?.ja || collection.description?.en || '';
   const curatorNote = collection.curatorNote?.[typedLocale] || collection.curatorNote?.ja || collection.curatorNote?.en;
 
-  const items = collection.itemIds
-    .map(id => getItemById(id))
-    .filter((item): item is NonNullable<typeof item> => item !== undefined);
+  const items = await getItemsInCollection(collection.itemIds || []);
 
   return (
     <Container as="main" className={styles.main}>
@@ -78,19 +78,4 @@ export default async function CollectionDetailPage({ params }: Props) {
       </div>
     </Container>
   );
-}
-
-export async function generateStaticParams() {
-  const collections = getAllCollections();
-  const locales = ['ja', 'en'];
-
-  const params: { locale: string; slug: string }[] = [];
-
-  for (const locale of locales) {
-    for (const collection of collections) {
-      params.push({ locale, slug: collection.slug });
-    }
-  }
-
-  return params;
 }

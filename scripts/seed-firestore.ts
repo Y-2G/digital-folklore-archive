@@ -27,7 +27,7 @@ const USE_EMULATOR = process.env.FIRESTORE_EMULATOR_HOST !== undefined;
 function initializeFirebase() {
   if (USE_EMULATOR) {
     console.log('🔧 Using Firestore Emulator');
-    initializeApp({ projectId: 'demo-folklore-archive' });
+    initializeApp({ projectId: 'demo-dta' });
   } else {
     // For production, use service account
     const serviceAccount = process.env.GOOGLE_APPLICATION_CREDENTIALS;

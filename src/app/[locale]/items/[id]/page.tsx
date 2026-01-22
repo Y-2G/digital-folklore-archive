@@ -3,9 +3,12 @@ import { notFound } from 'next/navigation';
 import { Container } from '@/components/common';
 import { Breadcrumb } from '@/components/common/Breadcrumb';
 import { TitleBlock, BodyViewer, SourceInfo, ItemSidebar } from '@/components/item';
-import { getItemById } from '@/lib/mock/items';
+import { getItemById } from '@/lib/firebase/firestore';
 import type { Locale } from '@/i18n/config';
 import styles from './page.module.css';
+
+// Dynamic rendering (no static generation with Firestore)
+export const dynamic = 'force-dynamic';
 
 type Props = {
   params: Promise<{ locale: string; id: string }>;
@@ -15,7 +18,7 @@ export default async function ItemPage({ params }: Props) {
   const { locale, id } = await params;
   setRequestLocale(locale);
 
-  const item = getItemById(id);
+  const item = await getItemById(id);
   if (!item) {
     notFound();
   }
@@ -45,21 +48,4 @@ export default async function ItemPage({ params }: Props) {
       </div>
     </Container>
   );
-}
-
-export async function generateStaticParams() {
-  // Generate params for all mock items
-  const { getAllItems } = await import('@/lib/mock/items');
-  const items = getAllItems();
-
-  const params: { locale: string; id: string }[] = [];
-  const locales = ['ja', 'en'];
-
-  for (const locale of locales) {
-    for (const item of items) {
-      params.push({ locale, id: item.id });
-    }
-  }
-
-  return params;
 }

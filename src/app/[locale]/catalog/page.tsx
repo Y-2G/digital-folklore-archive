@@ -37,7 +37,7 @@ export default async function CatalogPage({ params, searchParams }: Props) {
   const sort = parseSortFromSearchParams(urlParams);
 
   // Query items with filters and sorting
-  const { items, total } = queryCatalogItems({
+  const { items, total } = await queryCatalogItems({
     filters,
     sort,
     limit: 50, // Show more items for now (no pagination yet)

@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Digital Folklore Archive / デジタル伝承資料庫
+
+A digital library for cataloging contemporary folklore (kaidan, urban legends, creepypasta, chain memes, original works, commentary).
+
+同時代の伝承（怪談・都市伝説・クリーピーパスタ等）を収蔵するデジタル資料庫。
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router) + TypeScript
+- **Database**: Firebase Firestore
+- **i18n**: next-intl (Japanese / English)
+- **Styling**: CSS Modules + CSS Variables
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 20+
+- Yarn
+- Docker (for local Firebase emulators)
+
+### Setup
+
+1. Clone the repository
+
+2. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Set up environment variables:
+```bash
+cp .env.local.example .env.local
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Development with Docker Firebase Emulator (Recommended)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Start the Firebase emulator using Docker:
 
-## Learn More
+```bash
+# Start emulators
+yarn docker:up
 
-To learn more about Next.js, take a look at the following resources:
+# Check logs
+yarn docker:logs
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Stop emulators
+yarn docker:down
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Reset data and restart
+yarn docker:reset
+```
 
-## Deploy on Vercel
+Configure `.env.local` for emulator:
+```bash
+NEXT_PUBLIC_USE_FIREBASE_EMULATOR=true
+NEXT_PUBLIC_FIRESTORE_EMULATOR_HOST=localhost:8080
+NEXT_PUBLIC_AUTH_EMULATOR_HOST=localhost:9099
+NEXT_PUBLIC_STORAGE_EMULATOR_HOST=localhost:9199
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Start the development server:
+```bash
+yarn dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000) with your browser.
+
+### Emulator UI
+
+Access the Firebase Emulator UI at [http://localhost:4000](http://localhost:4000) to:
+- View and edit Firestore data
+- Manage authentication users
+- Monitor storage
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `yarn dev` | Start development server |
+| `yarn build` | Create production build |
+| `yarn lint` | Run ESLint |
+| `yarn typecheck` | Run TypeScript type check |
+| `yarn docker:up` | Start Firebase emulators (Docker) |
+| `yarn docker:down` | Stop Firebase emulators |
+| `yarn docker:logs` | View emulator logs |
+| `yarn docker:reset` | Reset emulator data |
+| `yarn db:seed` | Seed initial data |
+
+## Project Structure
+
+```
+src/
+├── app/[locale]/        # Next.js App Router (i18n)
+├── components/          # React components
+├── lib/
+│   ├── firebase/        # Firebase initialization
+│   └── catalog/         # Query builders, search
+├── types/               # TypeScript types
+└── messages/            # i18n translations (ja.json, en.json)
+
+docs/
+├── design/              # Design documents
+└── tasks/               # Task checklists
+```
+
+## Documentation
+
+See `docs/design/` for detailed specifications:
+- Project overview and design philosophy
+- Data model (Firestore schema)
+- Page designs
+- Search implementation
+- Docker Firebase setup

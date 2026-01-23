@@ -17,7 +17,7 @@ import {
   Timestamp,
   type QueryConstraint,
 } from 'firebase/firestore';
-import { db } from './client';
+import { getDb } from './client';
 import type {
   ItemDoc,
   CollectionDoc,
@@ -34,7 +34,7 @@ import type {
  * Fetch all published items
  */
 export async function getPublishedItems(): Promise<ItemDoc[]> {
-  const itemsRef = collection(db, 'items');
+  const itemsRef = collection(getDb(), 'items');
   const q = query(
     itemsRef,
     where('status', '==', 'PUBLISHED'),
@@ -52,7 +52,7 @@ export async function getPublishedItems(): Promise<ItemDoc[]> {
  * Fetch a single item by ID
  */
 export async function getItemById(id: string): Promise<ItemDoc | null> {
-  const itemRef = doc(db, 'items', id);
+  const itemRef = doc(getDb(), 'items', id);
   const snapshot = await getDoc(itemRef);
 
   if (!snapshot.exists()) {
@@ -87,7 +87,7 @@ export async function getFilteredItems(options: {
     limitCount,
   } = options;
 
-  const itemsRef = collection(db, 'items');
+  const itemsRef = collection(getDb(), 'items');
   const constraints: QueryConstraint[] = [
     where('status', '==', 'PUBLISHED'),
   ];
@@ -154,7 +154,7 @@ export async function getFilteredItems(options: {
  * Fetch recent items (for home page)
  */
 export async function getRecentItems(count: number = 5): Promise<ItemDoc[]> {
-  const itemsRef = collection(db, 'items');
+  const itemsRef = collection(getDb(), 'items');
   const q = query(
     itemsRef,
     where('status', '==', 'PUBLISHED'),
@@ -173,7 +173,7 @@ export async function getRecentItems(count: number = 5): Promise<ItemDoc[]> {
  * Fetch recently updated items (for home page)
  */
 export async function getRecentlyUpdatedItems(count: number = 5): Promise<ItemDoc[]> {
-  const itemsRef = collection(db, 'items');
+  const itemsRef = collection(getDb(), 'items');
   const q = query(
     itemsRef,
     where('status', '==', 'PUBLISHED'),
@@ -192,7 +192,7 @@ export async function getRecentlyUpdatedItems(count: number = 5): Promise<ItemDo
  * Fetch featured items (most annotated)
  */
 export async function getFeaturedItems(count: number = 3): Promise<ItemDoc[]> {
-  const itemsRef = collection(db, 'items');
+  const itemsRef = collection(getDb(), 'items');
   const q = query(
     itemsRef,
     where('status', '==', 'PUBLISHED'),
@@ -215,7 +215,7 @@ export async function getFeaturedItems(count: number = 3): Promise<ItemDoc[]> {
  * Fetch all published collections
  */
 export async function getPublishedCollections(): Promise<CollectionDoc[]> {
-  const collectionsRef = collection(db, 'collections');
+  const collectionsRef = collection(getDb(), 'collections');
   const q = query(
     collectionsRef,
     where('status', '==', 'PUBLISHED'),
@@ -233,7 +233,7 @@ export async function getPublishedCollections(): Promise<CollectionDoc[]> {
  * Fetch a single collection by slug
  */
 export async function getCollectionBySlug(slug: string): Promise<CollectionDoc | null> {
-  const collectionRef = doc(db, 'collections', slug);
+  const collectionRef = doc(getDb(), 'collections', slug);
   const snapshot = await getDoc(collectionRef);
 
   if (!snapshot.exists()) {

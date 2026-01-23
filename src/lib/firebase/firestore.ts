@@ -17,7 +17,7 @@ import {
   Timestamp,
   type QueryConstraint,
 } from 'firebase/firestore';
-import { getDb } from './client';
+import { getDb, isFirebaseConfigured } from './client';
 import type {
   ItemDoc,
   CollectionDoc,
@@ -25,6 +25,23 @@ import type {
   SourceConfidence,
   Language,
 } from '@/types/firestore';
+
+/**
+ * Safely get Firestore instance, logging warning if not configured
+ * @returns Firestore instance or null if not configured
+ */
+function safeGetDb() {
+  if (!isFirebaseConfigured()) {
+    console.warn('[Firestore] Firebase is not configured. Returning empty results.');
+    return null;
+  }
+  try {
+    return getDb();
+  } catch (error) {
+    console.error('[Firestore] Failed to initialize Firebase:', error);
+    return null;
+  }
+}
 
 // ============================================================================
 // Items Collection
@@ -34,7 +51,10 @@ import type {
  * Fetch all published items
  */
 export async function getPublishedItems(): Promise<ItemDoc[]> {
-  const itemsRef = collection(getDb(), 'items');
+  const db = safeGetDb();
+  if (!db) return [];
+
+  const itemsRef = collection(db, 'items');
   const q = query(
     itemsRef,
     where('status', '==', 'PUBLISHED'),
@@ -52,7 +72,10 @@ export async function getPublishedItems(): Promise<ItemDoc[]> {
  * Fetch a single item by ID
  */
 export async function getItemById(id: string): Promise<ItemDoc | null> {
-  const itemRef = doc(getDb(), 'items', id);
+  const db = safeGetDb();
+  if (!db) return null;
+
+  const itemRef = doc(db, 'items', id);
   const snapshot = await getDoc(itemRef);
 
   if (!snapshot.exists()) {
@@ -87,7 +110,10 @@ export async function getFilteredItems(options: {
     limitCount,
   } = options;
 
-  const itemsRef = collection(getDb(), 'items');
+  const db = safeGetDb();
+  if (!db) return [];
+
+  const itemsRef = collection(db, 'items');
   const constraints: QueryConstraint[] = [
     where('status', '==', 'PUBLISHED'),
   ];
@@ -154,7 +180,10 @@ export async function getFilteredItems(options: {
  * Fetch recent items (for home page)
  */
 export async function getRecentItems(count: number = 5): Promise<ItemDoc[]> {
-  const itemsRef = collection(getDb(), 'items');
+  const db = safeGetDb();
+  if (!db) return [];
+
+  const itemsRef = collection(db, 'items');
   const q = query(
     itemsRef,
     where('status', '==', 'PUBLISHED'),
@@ -173,7 +202,10 @@ export async function getRecentItems(count: number = 5): Promise<ItemDoc[]> {
  * Fetch recently updated items (for home page)
  */
 export async function getRecentlyUpdatedItems(count: number = 5): Promise<ItemDoc[]> {
-  const itemsRef = collection(getDb(), 'items');
+  const db = safeGetDb();
+  if (!db) return [];
+
+  const itemsRef = collection(db, 'items');
   const q = query(
     itemsRef,
     where('status', '==', 'PUBLISHED'),
@@ -192,7 +224,10 @@ export async function getRecentlyUpdatedItems(count: number = 5): Promise<ItemDo
  * Fetch featured items (most annotated)
  */
 export async function getFeaturedItems(count: number = 3): Promise<ItemDoc[]> {
-  const itemsRef = collection(getDb(), 'items');
+  const db = safeGetDb();
+  if (!db) return [];
+
+  const itemsRef = collection(db, 'items');
   const q = query(
     itemsRef,
     where('status', '==', 'PUBLISHED'),
@@ -215,7 +250,10 @@ export async function getFeaturedItems(count: number = 3): Promise<ItemDoc[]> {
  * Fetch all published collections
  */
 export async function getPublishedCollections(): Promise<CollectionDoc[]> {
-  const collectionsRef = collection(getDb(), 'collections');
+  const db = safeGetDb();
+  if (!db) return [];
+
+  const collectionsRef = collection(db, 'collections');
   const q = query(
     collectionsRef,
     where('status', '==', 'PUBLISHED'),
@@ -233,7 +271,10 @@ export async function getPublishedCollections(): Promise<CollectionDoc[]> {
  * Fetch a single collection by slug
  */
 export async function getCollectionBySlug(slug: string): Promise<CollectionDoc | null> {
-  const collectionRef = doc(getDb(), 'collections', slug);
+  const db = safeGetDb();
+  if (!db) return null;
+
+  const collectionRef = doc(db, 'collections', slug);
   const snapshot = await getDoc(collectionRef);
 
   if (!snapshot.exists()) {

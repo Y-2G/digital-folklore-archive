@@ -11,7 +11,8 @@
  *    - Set GOOGLE_APPLICATION_CREDENTIALS to point to service account JSON
  *    - Recommended for production environments
  * 2. Environment Variables
- *    - FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY
+ *    - FIREBASE_ADMIN_PROJECT_ID, FIREBASE_ADMIN_CLIENT_EMAIL, FIREBASE_ADMIN_PRIVATE_KEY (recommended)
+ *    - Or legacy: FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY
  *    - Alternative method when ADC is not available
  *
  * Emulator Support:
@@ -71,15 +72,16 @@ function initializeAdminApp(): App {
   }
 
   // Production: Fall back to explicit environment variables
-  const projectId = process.env.FIREBASE_PROJECT_ID;
-  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
-  const privateKey = process.env.FIREBASE_PRIVATE_KEY;
+  // Support both FIREBASE_ADMIN_* (recommended) and FIREBASE_* (legacy) prefixes
+  const projectId = process.env.FIREBASE_ADMIN_PROJECT_ID || process.env.FIREBASE_PROJECT_ID;
+  const clientEmail = process.env.FIREBASE_ADMIN_CLIENT_EMAIL || process.env.FIREBASE_CLIENT_EMAIL;
+  const privateKey = process.env.FIREBASE_ADMIN_PRIVATE_KEY || process.env.FIREBASE_PRIVATE_KEY;
 
   if (!projectId || !clientEmail || !privateKey) {
     throw new Error(
       'Missing Firebase Admin credentials.\n' +
       'Either set GOOGLE_APPLICATION_CREDENTIALS to point to service account JSON,\n' +
-      'or provide FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, and FIREBASE_PRIVATE_KEY.\n' +
+      'or provide FIREBASE_ADMIN_PROJECT_ID, FIREBASE_ADMIN_CLIENT_EMAIL, and FIREBASE_ADMIN_PRIVATE_KEY.\n' +
       'For local development, set NEXT_PUBLIC_USE_FIREBASE_EMULATOR=true to use emulators.'
     );
   }

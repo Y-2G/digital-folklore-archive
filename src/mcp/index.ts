@@ -5,6 +5,12 @@
  * Run with: yarn mcp:server
  */
 
+import { config } from 'dotenv';
+import { resolve } from 'path';
+
+// Load production environment variables (quiet: true to avoid stdout pollution in MCP)
+config({ path: resolve(__dirname, '../../.env.prod'), quiet: true });
+
 import { startMcpServer } from './server';
 
 // Start the server

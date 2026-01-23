@@ -2,7 +2,7 @@
 
 A digital library for cataloging contemporary folklore (kaidan, urban legends, creepypasta, chain memes, original works, commentary).
 
-同時代の伝承（怪談・都市伝説・クリーピーパスタ等）を収蔵するデジタル資料庫。
+現代の伝承（怪談・都市伝説・クリーピーパスタ等）を収蔵するデジタル資料庫。
 
 ## Tech Stack
 
